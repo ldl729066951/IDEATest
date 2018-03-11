@@ -23,7 +23,7 @@ public class DruidConfiguration {
     @Bean
     public ServletRegistrationBean DruidStatViewServle2(){
        //org.springframework.boot.context.embedded.ServletRegistrationBean提供类的进行注册.
-       ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(),"/druid2/*");      
+       ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(),"/druid2/*");
        //添加初始化参数：initParams    
        //白名单：
        servletRegistrationBean.addInitParameter("allow","127.0.0.1");
