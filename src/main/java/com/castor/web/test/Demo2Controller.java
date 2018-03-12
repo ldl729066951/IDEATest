@@ -39,5 +39,5 @@ public class Demo2Controller {
 		demoService.save(de);
 		return de;
 	}
-	
+
 }

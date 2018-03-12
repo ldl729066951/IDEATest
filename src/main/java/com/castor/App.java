@@ -15,7 +15,7 @@ import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 
 //@RestController  //返回json字符串的数据，直接可以编写RESTFul的接口；
 @SpringBootApplication  //申明让spring boot自动给程序进行必要的配置，等价于以默认属性使用@Configuration，@EnableAutoConfiguration和@ComponentScan
-//@ServletComponentScan//是的spring能够扫描到我们自己编写的关于druid的servlet和filter。
+@ServletComponentScan//是的spring能够扫描到我们自己编写的关于druid的servlet和filter。
 public class App {
 
 	@RequestMapping("/")  

@@ -48,6 +48,24 @@ public class GlobalDefaultExceptionHandler {
         * 定义视图文件(比如：error.html,error.ftl,error.jsp);
         *
         */
+
+       String url = req.getRequestURL().toString();
+	   req.getParameterMap();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
        
 	}
 	
