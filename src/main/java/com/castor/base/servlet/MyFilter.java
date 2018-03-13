@@ -1,10 +1,8 @@
 package com.castor.base.servlet;
 
-import com.castor.base.util.HttpUtil;
-import com.castor.web.bean.ServiceAccessLog;
-import com.castor.web.service.ServiceAccessLogService;
+import com.castor.base.event.CastorEventBus;
+import com.castor.base.event.ServiceAccessEvent;
 
-import javax.annotation.Resource;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -23,9 +21,6 @@ import java.util.Date;
 @WebFilter(filterName = "myFitler", urlPatterns = "/*")
 public class MyFilter implements Filter {
 
-    @Resource
-    private ServiceAccessLogService service;
-
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         System.out.println("过滤器初始化");
@@ -39,25 +34,8 @@ public class MyFilter implements Filter {
         System.out.println("执行过滤操作"+request.getRequestURL());
         chain.doFilter(servletRequest, servletResponse);
 
-        //TODO googel event bus 异步处理
-        String ip = HttpUtil.getIpAddress(request);
-        String host = request.getRemoteHost();
-        int port = request.getServerPort();
-        String method = request.getMethod();
-        String path = request.getRequestURI();
-        int status = response.getStatus();
-        Date end = new Date();
-        long responseTime = end.getTime() - start.getTime();
-        ServiceAccessLog bean = new ServiceAccessLog();
-        bean.setIp(ip);
-        bean.setHost(host);
-        bean.setCreateAt(start);
-        bean.setMethod(method);
-        bean.setPort(port+"");
-        bean.setPath(path);
-        bean.setResponseStatus(status);
-        bean.setResponseTime((int)responseTime);
-        service.save(bean);
+        // googel event bus 异步处理记录用户行为
+        CastorEventBus.getEventBus().post(ServiceAccessEvent.create(request, response, start));
     }
 
     @Override

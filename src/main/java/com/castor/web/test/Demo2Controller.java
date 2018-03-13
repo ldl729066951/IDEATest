@@ -2,9 +2,7 @@ package com.castor.web.test;
 
 import javax.annotation.Resource;
 
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.castor.web.bean.Demo;
@@ -16,7 +14,8 @@ public class Demo2Controller {
 
 	@Resource
 	private DemoService demoService;
-	
+
+
 	@RequestMapping("/save")
 	public String save(){
 		Demo de = new Demo();
@@ -25,9 +24,9 @@ public class Demo2Controller {
 		return "ok.save";
 	}
 	
-	@RequestMapping(path="/get", method=RequestMethod.POST)
-	public Object get(@RequestBody long id){
-		return demoService.get(1);
+	@RequestMapping(path="/get")
+	public Object get(){
+		return "ok";//demoService.get(1);
 	}
 	
 	@RequestMapping("/update")
