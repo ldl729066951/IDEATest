@@ -49,8 +49,7 @@ public class GlobalDefaultExceptionHandler {
         *
         */
 
-       String url = req.getRequestURL().toString();
-	   req.getParameterMap();
+
 
 
 
