@@ -2,6 +2,7 @@ package com.castor.test;
 
 
 import com.castor.App;
+import com.castor.base.SpringConfig;
 import com.castor.web.service.HelloService;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -23,6 +24,9 @@ public class HelloServiceTest {
     @Resource
     private HelloService helloService;
 
+    @Resource
+    private SpringConfig springConfig;
+
     @BeforeClass
     public static void before(){
         System.out.println("before");
@@ -30,6 +34,7 @@ public class HelloServiceTest {
 
     @Test
     public void testGetName(){
+        System.out.println(springConfig.getDatasourceType());
         Assert.assertEquals("hello",helloService.getName());
     }
 
